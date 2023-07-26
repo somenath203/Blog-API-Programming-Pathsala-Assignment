@@ -20,8 +20,15 @@ const setRankOfABlog = async (req, res) => {
 
         const getBlogById = await Blog.findById(req.body.idOfTheBlog);
 
+        const totalNumberOfLikes = getBlogById.totalLikesOnBlog;
+
+        const totalNumberOfViews = getBlogById.totalViewsOnBlog;
+
+        const totalScore = totalNumberOfLikes + totalNumberOfViews;
+
 
         await Rank.create({
+            totalNumberOfLikesAndViewsOnTheBlog: totalScore,
             blog: getBlogById._id
         });
 
